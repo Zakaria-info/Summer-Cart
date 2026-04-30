@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineSun, HiMenuAlt3 } from 'react-icons/hi';
 
@@ -34,7 +35,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar online">
               <div className="w-10 rounded-full ring ring-orange-400 ring-offset-base-100 ring-offset-2">
-                <img alt="User" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" />
+                <Image alt="User" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" />
               </div>
             </div>
             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-orange-50">
@@ -49,7 +50,7 @@ const Navbar = () => {
             </Link>
             <Link 
               href="/register" 
-              className="btn btn-sm bg-gradient-to-r from-yellow-400 via-orange-500 to-rose-500 border-none text-white font-bold shadow-lg hover:scale-105 transition-all"
+              className="btn btn-sm bg-linear-to-r from-yellow-400 via-orange-500 to-rose-500 border-none text-white font-bold shadow-lg hover:scale-105 transition-all"
             >
               Register
             </Link>
