@@ -7,7 +7,7 @@
     "rating": 4.7,
     "stock": 10,
     "description": "Stylish UV protection sunglasses perfect for summer outings.",
-    "image": "https://i.postimg.cc/example1.png",
+    "image": "https://i.ibb.co.com/Qv58Bxnr/01.jpg",
     "category": "Accessories"
   },
   {
@@ -18,7 +18,7 @@
     "rating": 4.5,
     "stock": 20,
     "description": "Lightweight straw hat to keep you cool under the sun.",
-    "image": "https://i.postimg.cc/example2.png",
+    "image": "https://i.ibb.co.com/0Rq37mNn/02.jpg",
     "category": "Accessories"
   },
   {
@@ -29,7 +29,7 @@
     "rating": 4.6,
     "stock": 15,
     "description": "Insulated bottle that keeps your drinks cold for hours.",
-    "image": "https://i.postimg.cc/example3.png",
+    "image": "https://i.ibb.co.com/3gRk1zG/03.jpg",
     "category": "Essentials"
   },
   {
@@ -40,7 +40,7 @@
     "rating": 4.4,
     "stock": 30,
     "description": "Breathable cotton t-shirt ideal for hot weather.",
-    "image": "https://i.postimg.cc/example4.png",
+    "image": "https://i.ibb.co.com/hJSpB06t/04.jpg",
     "category": "Clothing"
   },
   {
@@ -51,7 +51,7 @@
     "rating": 4.8,
     "stock": 12,
     "description": "Light and airy floral dress perfect for summer days.",
-    "image": "https://i.postimg.cc/example5.png",
+    "image": "https://i.ibb.co.com/RpFc2NRL/05.jpg",
     "category": "Clothing"
   },
   {
@@ -62,7 +62,7 @@
     "rating": 4.9,
     "stock": 25,
     "description": "High protection sunscreen for all-day sun safety.",
-    "image": "https://i.postimg.cc/example6.png",
+    "image": "https://i.ibb.co.com/zWxkWGtX/06.jpg",
     "category": "Skincare"
   },
   {
@@ -73,7 +73,7 @@
     "rating": 4.3,
     "stock": 18,
     "description": "Comfortable and durable sandals for beach trips.",
-    "image": "https://i.postimg.cc/example7.png",
+    "image": "https://i.ibb.co.com/M57yDr5D/07.jpg",
     "category": "Footwear"
   },
   {
@@ -84,7 +84,7 @@
     "rating": 4.6,
     "stock": 22,
     "description": "Handheld rechargeable fan for instant cooling.",
-    "image": "https://i.postimg.cc/example8.png",
+    "image": "https://i.ibb.co.com/j9NJBcYY/08.jpg",
     "category": "Gadgets"
   },
   {
@@ -95,7 +95,7 @@
     "rating": 4.5,
     "stock": 16,
     "description": "Anti-fog goggles for a clear underwater view.",
-    "image": "https://i.postimg.cc/example9.png",
+    "image": "https://i.ibb.co.com/67kTGp3b/09.jpg",
     "category": "Sports"
   },
   {
@@ -106,7 +106,7 @@
     "rating": 4.7,
     "stock": 14,
     "description": "Large and absorbent towel for beach and pool.",
-    "image": "https://i.postimg.cc/example10.png",
+    "image": "https://i.ibb.co.com/6RB9jC47/10.jpg",
     "category": "Essentials"
   },
   {
@@ -117,7 +117,7 @@
     "rating": 4.6,
     "stock": 8,
     "description": "Make delicious homemade ice cream easily.",
-    "image": "https://i.postimg.cc/example11.png",
+    "image": "https://i.ibb.co.com/5WFYrQ1k/11.jpg",
     "category": "Appliances"
   },
   {
@@ -128,7 +128,7 @@
     "rating": 4.5,
     "stock": 19,
     "description": "Lightweight backpack ideal for summer trips.",
-    "image": "https://i.postimg.cc/example12.png",
+    "image": "https://i.ibb.co.com/rVJMqGM/12.jpg",
     "category": "Travel"
   }
 ]
