@@ -2,14 +2,26 @@
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; 
 import { HiOutlineSun, HiMenuAlt3 } from "react-icons/hi";
 
 const Navbar = () => {
-  
-
+  const router = useRouter(); 
   const { data: session } = authClient.useSession();
   const user = session?.user;
   console.log(user, "user");
+
+  
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+          router.refresh(); 
+        },
+      },
+    });
+  };
 
   return (
     <div className="navbar bg-base-100/90 backdrop-blur-md sticky top-0 z-50 px-4 lg:px-12 border-b border-orange-100">
@@ -25,7 +37,6 @@ const Navbar = () => {
         </Link>
       </div>
 
-      
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-6 font-semibold text-base">
           <li className="hover:text-orange-500 transition-colors">
@@ -43,14 +54,22 @@ const Navbar = () => {
       {/* Auth Buttons */}
       <div className="navbar-end gap-3">
         {user ? (
-          <div className="flex justify-between items-center">
-            <div className="flex justify-between items-center gap-1">
-              <h2>Hello {user.name}</h2>
-              <Image alt="User" src={user.image} width={40} height={40} />
+          <div className="flex justify-between items-center gap-4">
+            <div className="flex justify-between items-center gap-2">
+              <h2 className="font-medium hidden md:block">Hello {user.name}</h2>
+              <div className="avatar">
+                <div className="w-10 rounded-full ring ring-orange-500 ring-offset-base-100 ring-offset-2">
+                  <Image alt="User" src={user.image} width={40} height={40} />
+                </div>
+              </div>
             </div>
 
-            <button className="btn bg-orange-500 text-white items-center">
-              <Link href={"/register"}>Log Out</Link>
+            
+            <button 
+              onClick={handleSignOut} 
+              className="btn btn-sm md:btn-md bg-orange-500 hover:bg-orange-600 text-white border-none rounded-xl"
+            >
+              Log Out
             </button>
           </div>
         ) : (
@@ -70,7 +89,7 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Mobile Dropdown */}
+        
         <div className="dropdown dropdown-end lg:hidden">
           <label tabIndex={0} className="btn btn-ghost p-0">
             <HiMenuAlt3 size={28} className="text-orange-600" />
@@ -79,15 +98,9 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow-2xl bg-base-100 rounded-2xl w-64 gap-2 border border-orange-50"
           >
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/products">Products</Link>
-            </li>
-            <li>
-              <Link href="/profile">My Profile</Link>
-            </li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/products">Products</Link></li>
+            <li><Link href="/profile">My Profile</Link></li>
           </ul>
         </div>
       </div>

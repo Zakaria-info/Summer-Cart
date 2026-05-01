@@ -1,10 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HiStar, HiEye } from 'react-icons/hi';
 
 const ProductCard = ({ product }) => {
   return (
     <div className="card bg-base-100 w-full shadow-xl hover:shadow-2xl transition-all duration-300 border border-orange-100 group">
-     
       <figure className="relative h-64 w-full overflow-hidden bg-orange-50">
         <Image
           src={product.image}
@@ -12,7 +12,6 @@ const ProductCard = ({ product }) => {
           width={300}
           height={300}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          
         />
         <div className="absolute top-4 right-4 badge badge-secondary font-bold shadow-md">
           HOT
@@ -38,10 +37,14 @@ const ProductCard = ({ product }) => {
           <span className="text-2xl font-black text-orange-600">
             ${product.price}
           </span>
-          <button className="btn btn-primary btn-sm md:btn-md rounded-xl gap-2 shadow-lg shadow-indigo-100">
-            <HiEye size={18} />
-            <span>Details</span>
-          </button>
+          
+          
+          <Link href={`/productDetails/${product.id}`} className="inline-block">
+            <button className="btn btn-primary btn-sm md:btn-md rounded-xl gap-2 shadow-lg shadow-indigo-100">
+              <HiEye size={18} />
+              <span>Details</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
