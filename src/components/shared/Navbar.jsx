@@ -5,7 +5,7 @@ import Link from "next/link";
 import { HiOutlineSun, HiMenuAlt3 } from "react-icons/hi";
 
 const Navbar = () => {
-  // Mock state: change to true to see the "Logged In" view
+  
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -25,7 +25,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Desktop Links */}
+      
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-6 font-semibold text-base">
           <li className="hover:text-orange-500 transition-colors">
@@ -44,13 +44,13 @@ const Navbar = () => {
       <div className="navbar-end gap-3">
         {user ? (
           <div className="flex justify-between items-center">
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex justify-between items-center gap-1">
               <h2>Hello {user.name}</h2>
-              <Image alt="User" src={user.image} width={60} height={60} />
+              <Image alt="User" src={user.image} width={40} height={40} />
             </div>
 
             <button className="btn bg-orange-500 text-white items-center">
-              Log Out
+              <Link href={"/register"}>Log Out</Link>
             </button>
           </div>
         ) : (

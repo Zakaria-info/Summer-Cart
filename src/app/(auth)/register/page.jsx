@@ -1,34 +1,46 @@
 "use client";
 import Link from "next/link";
-
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
-
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation"; // 1. Import the router
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
+  const router = useRouter(); // 2. Initialize the router
 
-  const handleRegister = async(data) => {
+  const handleRegister = async (data) => {
     console.log(data, "data");
-
     const { email, password, name, image } = data;
-    console.log(email, password);
 
-    const {data:res, error} =await authClient.signUp.email({
-      name: name, // required
-      email: email, // required
-      password: password ,// required
+    const { data: res, error } = await authClient.signUp.email({
+      name: name,
+      email: email,
+      password: password,
       image: image,
-      callbackURL: "/",
+      // callbackURL: "/", // We can remove this for email signup since we redirect manually
     });
-    console.log(res, error)
-    if(error){
-      alert(error.message)
+
+    if (error) {
+      alert(error.message);
     }
-    if(res){
-      alert("SignUp Success")
+    
+    if (res) {
+      alert("SignUp Success! Redirecting to login...");
+      // 3. This is the "Proper" way to redirect after a successful logic check
+      router.push("/login"); 
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/", 
+    });
+
+    if (error) {
+      alert(error.message);
     }
   };
 
@@ -46,95 +58,50 @@ const RegisterPage = () => {
           </div>
 
           <form onSubmit={handleSubmit(handleRegister)} className="space-y-5">
-            {/* Email Field */}
+            {/* ... (Your existing input fields stay exactly the same) ... */}
             <div className="form-control">
-              <label className="label font-semibold text-xs uppercase tracking-widest">
-                Name
-              </label>
+              <label className="label font-semibold text-xs uppercase tracking-widest">Name</label>
               <div className="relative">
-                <HiOutlineMail
-                  className="absolute left-3 top-3.5 text-orange-400"
-                  size={20}
-                />
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="input input-bordered w-full pl-10 bg-orange-50/30 focus:border-orange-400"
-                  required
-                  {...register("name")}
-                />
-              </div>
-            </div>
-            <div className="form-control">
-              <label className="label font-semibold text-xs uppercase tracking-widest">
-                Image URL
-              </label>
-              <div className="relative">
-                <HiOutlineMail
-                  className="absolute left-3 top-3.5 text-orange-400"
-                  size={20}
-                />
-                <input
-                  type="text"
-                  placeholder="Your Image URL "
-                  className="input input-bordered w-full pl-10 bg-orange-50/30 focus:border-orange-400"
-                  required
-                  {...register("image")}
-                />
-              </div>
-            </div>
-            <div className="form-control">
-              <label className="label font-semibold text-xs uppercase tracking-widest">
-                Email Address
-              </label>
-              <div className="relative">
-                <HiOutlineMail
-                  className="absolute left-3 top-3.5 text-orange-400"
-                  size={20}
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="input input-bordered w-full pl-10 bg-orange-50/30 focus:border-orange-400"
-                  required
-                  {...register("email")}
-                />
+                <HiOutlineMail className="absolute left-3 top-3.5 text-orange-400" size={20} />
+                <input type="text" placeholder="Your Name" className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("name")} />
               </div>
             </div>
 
-            {/* Password Field */}
             <div className="form-control">
-              <label className="label font-semibold text-xs uppercase tracking-widest">
-                Password
-              </label>
+              <label className="label font-semibold text-xs uppercase tracking-widest">Image URL</label>
               <div className="relative">
-                <HiOutlineLockClosed
-                  className="absolute left-3 top-3.5 text-orange-400"
-                  size={20}
-                />
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  className="input input-bordered w-full pl-10 bg-orange-50/30 focus:border-orange-400"
-                  required
-                  {...register("password")}
-                />
+                <HiOutlineMail className="absolute left-3 top-3.5 text-orange-400" size={20} />
+                <input type="text" placeholder="Your Image URL " className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("image")} />
               </div>
             </div>
 
-            
-             <button className="btn bg-linear-to-r from-orange-500 to-rose-500 hover:scale-[1.02] transition-all border-none text-white w-full mt-4 font-bold shadow-lg shadow-orange-200"> Register</button>
-           
+            <div className="form-control">
+              <label className="label font-semibold text-xs uppercase tracking-widest">Email Address</label>
+              <div className="relative">
+                <HiOutlineMail className="absolute left-3 top-3.5 text-orange-400" size={20} />
+                <input type="email" placeholder="Your Email" className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("email")} />
+              </div>
+            </div>
+
+            <div className="form-control">
+              <label className="label font-semibold text-xs uppercase tracking-widest">Password</label>
+              <div className="relative">
+                <HiOutlineLockClosed className="absolute left-3 top-3.5 text-orange-400" size={20} />
+                <input type="password" placeholder="••••••••" className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("password")} />
+              </div>
+            </div>
+
+            {/* The Submit Button: No <Link> needed, router.push handles it! */}
+            <button type="submit" className="btn bg-linear-to-r from-orange-500 to-rose-500 hover:scale-[1.02] transition-all border-none text-white w-full mt-4 font-bold shadow-lg shadow-orange-200">
+              Register
+            </button>
           </form>
 
-          <div className="divider text-xs uppercase text-base-content/40 my-8">
-            Or Secure Login
-          </div>
+          <div className="divider text-xs uppercase text-base-content/40 my-8">Or Secure Login</div>
 
-          {/* Google Social Login */}
-          <button className="btn btn-outline border-gray-200 hover:bg-gray-50 hover:border-gray-300 w-full flex items-center gap-2">
+          <button onClick={handleGoogleSignIn} className="btn btn-outline border-gray-200 hover:bg-gray-50 hover:border-gray-300 w-full flex items-center gap-2">
             <FcGoogle size={22} />
-            <span className="text-base-content">Register in with Google</span>
+            <span className="text-base-content">Register with Google</span>
           </button>
         </div>
       </div>
