@@ -1,25 +1,20 @@
-
-
-
-import { betterAuth } from "better-auth";
-import { MongoClient } from "mongodb";
-import { mongodbAdapter } from "better-auth/adapters/mongodb";
-
-const client = new MongoClient(process.env.MONGO_URI);
-const db = client.db("suncart");
-
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
-    // Optional: if you don't provide a client, database transactions won't be enabled.
     client
   }),
-   emailAndPassword: { 
+  // This tells BetterAuth to use the Vercel URL in production
+  baseURL: process.env.BETTER_AUTH_URL, 
+  emailAndPassword: { 
     enabled: true, 
   }, 
   socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-        }, 
-    },
+    google: { 
+      clientId: process.env.GOOGLE_CLIENT_ID, 
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+    }, 
+  },
+  // CRITICAL: This ensures cookies are handled correctly over HTTPS
+  advanced: {
+    useSecureCookies: process.env.NODE_ENV === "production"
+  }
 });
