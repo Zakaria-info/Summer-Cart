@@ -31,7 +31,7 @@ const Navbar = () => {
           <div className="bg-linear-to-tr from-yellow-400 to-orange-500 p-2 rounded-xl text-white group-hover:rotate-12 transition-transform shadow-md">
             <HiOutlineSun size={24} />
           </div>
-          <span className="font-extrabold text-2xl tracking-tighter hidden sm:block">
+          <span className="font-extrabold text-2xl tracking-tighter hidden sm:block animate__animated animate__bounce">
             SUN<span className="text-orange-500">CART</span>
           </span>
         </Link>

@@ -19,7 +19,7 @@ const HeroSection = () => {
           <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter leading-none">
             SUMMER <span className="text-rose-600 drop-shadow-sm">SALE</span>
           </h2>
-          <p className="text-5xl md:text-7xl font-black text-rose-600 drop-shadow-md">
+          <p className="text-5xl md:text-7xl font-black text-rose-600 drop-shadow-md animate__animated animate__bounce">
             50% OFF
           </p>
           <p className="text-sm md:text-lg opacity-90 max-w-sm pt-2">
