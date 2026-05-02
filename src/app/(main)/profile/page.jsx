@@ -4,6 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineMail, HiPencilAlt, HiUserCircle } from "react-icons/hi";
 
+const getValidImageUrl = (value) => {
+  if (!value) return null;
+  try {
+    return new URL(value).href;
+  } catch {
+    return null;
+  }
+};
+
 const ProfilePage = () => {
   const { data: session, isPending } = authClient.useSession();
 
@@ -17,11 +26,13 @@ const ProfilePage = () => {
         <div className="card bg-base-100 shadow-2xl border border-orange-100">
           <figure className="px-10 pt-10">
             <div className="avatar">
-              <div className="w-32 rounded-full ring ring-orange-500 ring-offset-base-100 ring-offset-2 shadow-xl">
-                {user?.image ? (
-                  <Image src={user.image} alt={user.name} width={500} height={500} />
+              <div className="w-32 rounded-full ring ring-orange-500 ring-offset-base-100 ring-offset-2 shadow-xl overflow-hidden bg-white">
+                {getValidImageUrl(user?.image) ? (
+                  <Image src={getValidImageUrl(user.image)} alt={user.name} width={500} height={500} />
                 ) : (
-                  <HiUserCircle className="w-full h-full text-gray-300" />
+                  <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-500">
+                    <HiUserCircle className="w-24 h-24" />
+                  </div>
                 )}
               </div>
             </div>

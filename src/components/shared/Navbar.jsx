@@ -3,12 +3,22 @@ import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
-import { HiOutlineSun, HiMenuAlt3 } from "react-icons/hi";
+import { HiOutlineSun, HiMenuAlt3, HiUserCircle } from "react-icons/hi";
+
+const getValidImageUrl = (value) => {
+  if (!value) return null;
+  try {
+    return new URL(value).href;
+  } catch {
+    return null;
+  }
+};
 
 const Navbar = () => {
   const router = useRouter(); 
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const avatarSrc = getValidImageUrl(user?.image);
   console.log(user, "user");
 
   
@@ -59,9 +69,15 @@ const Navbar = () => {
               <h2 className="font-medium hidden md:block">Hello {user.name}</h2>
               <div className="avatar">
                 <div className="w-10 rounded-full ring ring-orange-500 ring-offset-base-100 ring-offset-2">
-                  <Image alt="User" src={user.image} width={40} height={40} />
-                </div>
+                {avatarSrc ? (
+                  <Image alt="User" src={avatarSrc} width={40} height={40} />
+                ) : (
+                  <div className="w-10 h-10 flex items-center justify-center bg-orange-100 text-orange-500 rounded-full">
+                    <HiUserCircle size={24} />
+                  </div>
+                )}
               </div>
+            </div>
             </div>
 
             

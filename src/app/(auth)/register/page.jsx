@@ -22,13 +22,14 @@ const RegisterForm = () => {
     });
 
     if (error) {
-      alert(error.message);
+      const errorMessage = error?.message || String(error) || "Registration failed.";
+      alert(errorMessage);
       return;
     }
     
     if (res) {
       alert("SignUp Success! Redirecting to login...");
-      router.push("/login"); 
+      router.push("/login");
     }
   };
 
@@ -63,7 +64,7 @@ const RegisterForm = () => {
           <label className="label font-semibold text-xs uppercase tracking-widest">Image URL</label>
           <div className="relative">
             <HiOutlinePhotograph className="absolute left-3 top-3.5 text-orange-400" size={20} />
-            <input type="text" placeholder="https://..." className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("image")} />
+            <input type="url" placeholder="https://example.com/avatar.jpg" className="input input-bordered w-full pl-10 bg-orange-50/30" required {...register("image")} />
           </div>
         </div>
 

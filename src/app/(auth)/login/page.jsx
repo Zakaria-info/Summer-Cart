@@ -23,7 +23,8 @@ const LoginForm = () => {
     });
 
     if (error) {
-      alert(error.message);
+      const errorMessage = error?.message || String(error) || "Login failed.";
+      alert(errorMessage);
       return;
     }
 
