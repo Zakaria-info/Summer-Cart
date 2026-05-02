@@ -1,20 +1,25 @@
+
+
+
+import { betterAuth } from "better-auth";
+import { MongoClient } from "mongodb";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+
+const client = new MongoClient(process.env.MONGO_URI);
+const db = client.db("suncart");
+
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
+    // Optional: if you don't provide a client, database transactions won't be enabled.
     client
   }),
-  // IMPORTANT: Tell BetterAuth where the app is running
-  baseURL: process.env.BETTER_AUTH_URL, 
-  emailAndPassword: { 
+   emailAndPassword: { 
     enabled: true, 
   }, 
   socialProviders: {
-    google: { 
-      clientId: process.env.GOOGLE_CLIENT_ID, 
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-    }, 
-  },
-  // Add this section to handle production cookie security
-  advanced: {
-    useSecureCookies: process.env.NODE_ENV === "production"
-  }
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+        }, 
+    },
 });
